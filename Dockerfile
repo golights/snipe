@@ -11,6 +11,8 @@ RUN sed -i -e 's/a2dismod/sudo a2dismod/'  \
            -e 's/mkdir -p/sudo mkdir -p/' /startup.sh && \
     sed -i -e 's/Listen 80/Listen 8080/' /etc/apache2/ports.conf
 
+RUN chmod -R ga+rw /var/log/apache2/
+
 USER docker
 
 CMD ["bash", "-x", "/startup.sh"]
