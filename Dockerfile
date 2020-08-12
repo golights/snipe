@@ -2,9 +2,12 @@ FROM snipe/snipe-it AS snipe_it
 
 FROM snipe/snipe-it
 
-RUN groupadd snipe && \
-    useradd -r -g snipe snipe
+RUN apt-get update && \
+    apt-get install sudo && \
+    echo "docker ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/docker
 
-USER snipe
+RUN sed -i -e 's/a2dismod/sudo a2dismod/' /startup.sh
+
+USER docker
 
 CMD ["bash", "-x", "/startup.sh"]
