@@ -1,5 +1,3 @@
-FROM snipe/snipe-it
-
 FROM snipe/snipe-it AS snipe_it
 
 FROM snipe/snipe-it
@@ -9,4 +7,4 @@ RUN groupadd snipe && \
 
 USER snipe
 
-CMD ["/startup.sh"]
+CMD ["bash", "-x", "/startup.sh"]
